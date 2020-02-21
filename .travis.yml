@@ -1,6 +1,6 @@
 dist: bionic
 arch:
-- amd64
+#- amd64
 - ppc64le
 language: ruby
 rvm:
@@ -23,12 +23,12 @@ matrix:
 services:
   - postgresql
 before_install:
+- source ${TRAVIS_BUILD_DIR}/tools/ci/gitconfig.sh
 - source ${TRAVIS_BUILD_DIR}/tools/ci/before_install.sh
 before_script:
-- bundle exec rake test:$TEST_SUITE:setup
-- source ${TRAVIS_BUILD_DIR}/tools/ci/gitconfig.sh
-script:
 - git config --list
+- bundle exec rake test:$TEST_SUITE:setup
+script:
 - bundle exec rake test:$TEST_SUITE
 after_failure:
 - source ${TRAVIS_BUILD_DIR}/tools/ci/after_failure.sh
