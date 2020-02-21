@@ -26,7 +26,9 @@ before_install:
 - source ${TRAVIS_BUILD_DIR}/tools/ci/before_install.sh
 before_script:
 - bundle exec rake test:$TEST_SUITE:setup
+- source ${TRAVIS_BUILD_DIR}/tools/ci/gitconfig.sh
 script:
+- git config --list
 - bundle exec rake test:$TEST_SUITE
 after_failure:
 - source ${TRAVIS_BUILD_DIR}/tools/ci/after_failure.sh
